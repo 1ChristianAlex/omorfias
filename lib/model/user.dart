@@ -1,12 +1,5 @@
 enum AccessLevel { admin, serviceProvider, serviceConsumer }
 
-class Login {
-  final String email;
-  final String password;
-
-  Login({this.email, this.password});
-}
-
 class User {
   final int id;
   final String name;
@@ -36,7 +29,7 @@ class User {
     );
   }
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson(dynamic json) {
     return User(
       id: json['id'],
       name: json['name'],

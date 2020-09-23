@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:localstorage/localstorage.dart';
+import 'package:omorfias/config/SecureStorage.dart';
 import 'package:omorfias/redux/appState.dart';
 import 'package:omorfias/screen/HomeScreen.dart';
 import 'package:omorfias/screen/LoginScreen.dart';
@@ -25,18 +25,12 @@ class MyApp extends StatelessWidget {
 }
 
 class OmorfiasApp extends StatelessWidget {
-  final LocalStorage storage = new LocalStorage('OmorfiasApp');
+  final SecureStorage secureStorage = SecureStorage();
 
   Future<bool> hasToken() async {
-    await storage.ready;
-    storage.setItem('token', 'valo');
+    String token = await secureStorage.getToken();
 
-    String token = storage.getItem('token');
-
-    if (token.isNotEmpty) {
-      return true;
-    }
-    return false;
+    return token.isNotEmpty;
   }
 
   @override
