@@ -7,7 +7,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(131, 80, 46, 1),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
