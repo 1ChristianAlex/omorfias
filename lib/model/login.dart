@@ -16,7 +16,7 @@ class LoginResponse {
   factory LoginResponse.fromJson(dynamic json) {
     return LoginResponse(
       token: json['token'],
-      user: json['user'],
+      user: User.fromJson(json['user']),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:omorfias/config/SecureStorage.dart';
 import 'package:omorfias/redux/appState.dart';
 import 'package:omorfias/screen/HomeScreen.dart';
 import 'package:omorfias/screen/LoginScreen.dart';
+import 'package:omorfias/screen/RegisterScreen.dart';
 import 'package:redux/redux.dart';
 import 'package:omorfias/redux/reducer.dart';
 
@@ -45,6 +46,7 @@ class OmorfiasApp extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             routes: <String, WidgetBuilder>{
+              '/register': (BuildContext context) => RegisterScreen(),
               '/login': (BuildContext context) => LoginScreen(),
               '/home': (BuildContext context) => HomeScreen(),
               '/': (BuildContext context) =>

@@ -1,11 +1,11 @@
-enum AccessLevel { admin, serviceProvider, serviceConsumer }
+import 'package:omorfias/enum/AcessLevel.dart';
 
 class User {
   final int id;
   final String name;
   final String lastName;
   final String userName;
-  final AccessLevel accessLevel;
+  final int accessLevel;
 
   User({this.userName, this.accessLevel, this.id, this.lastName, this.name});
 

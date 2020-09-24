@@ -14,7 +14,7 @@ class DefaultHeader {
 
   void _loadHeader() async {
     SecureStorage secureStorage = SecureStorage();
-
+    await secureStorage.setToken('token', 'value');
     String token = await secureStorage.getToken();
 
     if (token.isNotEmpty) {

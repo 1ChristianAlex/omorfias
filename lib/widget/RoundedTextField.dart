@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:omorfias/enum/DesignSystem.dart';
 
 class RoundedTextField extends StatelessWidget {
   final void Function(String) onChanged;
   final String Function(String) validator;
   final String placeholder;
+  final bool hideText;
 
-  RoundedTextField({this.onChanged, this.validator, this.placeholder});
+  RoundedTextField(
+      {this.onChanged, this.validator, this.placeholder, this.hideText});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
+        obscureText: hideText ?? false,
         decoration: InputDecoration(
           hintText: placeholder.isNotEmpty ? placeholder : '',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(22),
+              Radius.circular(DesignSystem.rounded),
             ),
           ),
         ),

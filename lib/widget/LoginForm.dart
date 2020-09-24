@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:omorfias/model/login.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/redux/actions.dart';
 import 'package:omorfias/redux/appState.dart';
+import 'package:omorfias/service/Login.dart';
 import 'package:omorfias/widget/RoundedButtom.dart';
 import 'package:omorfias/widget/RoundedTextField.dart';
 import 'package:redux/redux.dart';
@@ -12,22 +14,36 @@ class LoginForm extends StatefulWidget {
   _LoginFormState createState() => _LoginFormState();
 }
 
+// class _ViewModelLogin {
+//   final User user;
+//   final Function(User) submitLogin;
+
+//   _ViewModelLogin({this.user, this.submitLogin});
+
+//   factory _ViewModelLogin.create(Store<AppState> store) {
+//     _submitLogin(User userData) async {
+//       store.dispatch(UpdateUserAction(userData));
+//     }
+//     return _ViewModelLogin(user: store.state.user, submitLogin: _submitLogin);
+//   }
+// }
+
 class _LoginFormState extends State<LoginForm> {
-  String name = '';
-  String password = '';
+  String email;
+  String password;
 
   @override
   void initState() {
     super.initState();
-    name = 'Nome';
-    password = 'Pass';
+    email = '';
+    password = '';
   }
 
   final _formKey = GlobalKey<FormState>();
 
-  void setName(value) {
+  void setEmail(value) {
     setState(() {
-      name = value;
+      email = value;
     });
   }
 
@@ -37,11 +53,22 @@ class _LoginFormState extends State<LoginForm> {
     });
   }
 
-  void submitLogin() {
-    Store<AppState> store = StoreProvider.of<AppState>(context);
-    User userData = User(userName: name, id: 1);
-    store.dispatch(UpdateUserAction(userData));
-    Navigator.pushReplacementNamed(context, '/home');
+  void submitLogin() async {
+    if (this._formKey.currentState.validate()) {
+      Store<AppState> _store = StoreProvider.of<AppState>(context);
+      LoginService _loginService = LoginService();
+
+      Login loginData = Login(email: email, password: password);
+
+      User userResponse = await _loginService.login(loginData);
+
+      _store.dispatch(UpdateUserAction(userResponse));
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+  }
+
+  void goRegister() {
+    Navigator.pushReplacementNamed(context, '/register');
   }
 
   @override
@@ -51,7 +78,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Form(
         key: _formKey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Padding(
@@ -62,27 +89,29 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
             Flexible(
+              flex: 3,
               child: RoundedTextField(
-                onChanged: setPass,
+                onChanged: setEmail,
                 placeholder: 'E-mail',
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value.length == 0) {
                     return "Email esta vazio";
                   }
-                  return "";
+                  return null;
                 },
               ),
             ),
             Flexible(
-              flex: 1,
+              flex: 3,
               child: RoundedTextField(
+                hideText: true,
                 onChanged: setPass,
                 placeholder: 'Senha',
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value.length == 0) {
                     return "Senha esta vazia";
                   }
-                  return "";
+                  return null;
                 },
               ),
             ),
@@ -123,12 +152,9 @@ class _LoginFormState extends State<LoginForm> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(bottom: 16),
-                    child: InkWell(
-                      child: Text(
-                        'Não possui uma conta? ',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      onTap: () => {},
+                    child: Text(
+                      'Não possui uma conta? ',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -139,7 +165,7 @@ class _LoginFormState extends State<LoginForm> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.blue),
                       ),
-                      onTap: () => {},
+                      onTap: goRegister,
                     ),
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omorfias/enum/DesignSystem.dart';
 
 class RoundedButtom extends StatefulWidget {
   final Function onPressed;
@@ -27,7 +28,7 @@ class _RoundedButtomState extends State<RoundedButtom> {
       minWidth: double.infinity,
       child: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
+          borderRadius: BorderRadius.circular(DesignSystem.rounded),
           side: BorderSide(
             color: widget.textColor ?? Color.fromRGBO(255, 255, 255, 1),
           ),
