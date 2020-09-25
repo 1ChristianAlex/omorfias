@@ -35,7 +35,7 @@ class Adapter implements IAdapter {
 
   Adapter(this._clientHttp);
 
-  Future<Map<String, String>> mergeHeaders(Map<String, String> headers) async {
+  Future<Map<String, String>> _mergeHeaders(Map<String, String> headers) async {
     Map<String, String> headerRequest = Map<String, String>();
     headerRequest.addAll(headers);
     headerRequest.addAll(await header.getHeader());
@@ -43,14 +43,14 @@ class Adapter implements IAdapter {
   }
 
   Future getMethod(String url, {Map<String, String> headers}) async {
-    Map<String, String> headerRequest = await mergeHeaders(headers);
+    Map<String, String> headerRequest = await _mergeHeaders(headers);
 
     Response response = await this._clientHttp.get(url, headers: headerRequest);
     return json.decode(response.body);
   }
 
   Future postMethod(String url, body, {Map<String, String> headers}) async {
-    Map<String, String> headerRequest = await mergeHeaders(headers);
+    Map<String, String> headerRequest = await _mergeHeaders(headers);
 
     Response response =
         await this._clientHttp.post(url, headers: headerRequest, body: body);
@@ -58,7 +58,7 @@ class Adapter implements IAdapter {
   }
 
   Future putMethod(String url, body, {Map<String, String> headers}) async {
-    Map<String, String> headerRequest = await mergeHeaders(headers);
+    Map<String, String> headerRequest = await _mergeHeaders(headers);
 
     Response response =
         await this._clientHttp.put(url, headers: headerRequest, body: body);
@@ -66,7 +66,7 @@ class Adapter implements IAdapter {
   }
 
   Future deleteMethod(String url, body, {Map<String, String> headers}) async {
-    Map<String, String> headerRequest = await mergeHeaders(headers);
+    Map<String, String> headerRequest = await _mergeHeaders(headers);
 
     Response response =
         await this._clientHttp.delete(url, headers: headerRequest);
