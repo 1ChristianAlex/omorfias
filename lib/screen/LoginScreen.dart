@@ -15,11 +15,14 @@ class LoginScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Flexible(
-                child: Logo(),
+                child: Container(
+                  child: Logo(),
+                  padding: EdgeInsets.only(top: 20),
+                ),
               ),
               Flexible(
                 child: LoginForm(),
-                flex: 10,
+                flex: 6,
               )
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/widget/Logo.dart';
+import 'package:omorfias/widget/RegisterForm.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -12,18 +13,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Flexible(
-                  child: Logo(),
-                  flex: 1,
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 70),
+                child: Logo(),
+              ),
+              RegisterForm()
+            ],
           ),
         ),
       ),

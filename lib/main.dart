@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:omorfias/config/SecureStorage.dart';
+import 'package:omorfias/enum/DesignSystem.dart';
 import 'package:omorfias/redux/appState.dart';
 import 'package:omorfias/screen/HomeScreen.dart';
 import 'package:omorfias/screen/LoginScreen.dart';
@@ -37,22 +38,24 @@ class OmorfiasApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: hasToken(),
-        builder: (BuildContext context, snapshot) {
-          return MaterialApp(
-            title: 'Omorfias',
-            theme: ThemeData(
-              primarySwatch: Colors.purple,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-            ),
-            routes: <String, WidgetBuilder>{
-              '/register': (BuildContext context) => RegisterScreen(),
-              '/login': (BuildContext context) => LoginScreen(),
-              '/home': (BuildContext context) => HomeScreen(),
-              '/': (BuildContext context) =>
-                  snapshot.data == null ? LoginScreen() : HomeScreen()
-            },
-          );
-        });
+      future: hasToken(),
+      builder: (BuildContext context, snapshot) {
+        return MaterialApp(
+          title: 'Omorfias',
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: DesignSystem.appFont,
+          ),
+          routes: <String, WidgetBuilder>{
+            '/register': (BuildContext context) => RegisterScreen(),
+            '/login': (BuildContext context) => LoginScreen(),
+            '/home': (BuildContext context) => HomeScreen(),
+            '/': (BuildContext context) =>
+                snapshot.data == null ? LoginScreen() : HomeScreen()
+          },
+        );
+      },
+    );
   }
 }

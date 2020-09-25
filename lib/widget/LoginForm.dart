@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:omorfias/model/login.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/redux/actions.dart';
@@ -88,8 +89,8 @@ class _LoginFormState extends State<LoginForm> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            Flexible(
-              flex: 3,
+            Container(
+              padding: EdgeInsets.only(bottom: 10),
               child: RoundedTextField(
                 onChanged: setEmail,
                 placeholder: 'E-mail',
@@ -101,8 +102,7 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
             ),
-            Flexible(
-              flex: 3,
+            Container(
               child: RoundedTextField(
                 hideText: true,
                 onChanged: setPass,
@@ -115,101 +115,88 @@ class _LoginFormState extends State<LoginForm> {
                 },
               ),
             ),
-            Flexible(
-              fit: FlexFit.loose,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 16, bottom: 16),
-                    child: InkWell(
-                      child: Text(
-                        'Esqueci minha senha',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.blue),
-                      ),
-                      onTap: () => {},
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: RoundedButtom(
-                  key: _formKey,
-                  onPressed: submitLogin,
-                  textButton: 'Entrar'.toUpperCase(),
-                ),
-              ),
-            ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 16),
+                  child: InkWell(
                     child: Text(
-                      'Não possui uma conta? ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      'Esqueci minha senha',
+                      style: TextStyle(color: Colors.blue),
                     ),
+                    onTap: () => {},
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 16),
-                    child: InkWell(
-                      child: Text(
-                        'Cadastre-se agora',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.blue),
-                      ),
-                      onTap: goRegister,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            // Flexible(
-            //   flex: 2,
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(top: 16, bottom: 16),
-            //     child: RoundedButtom(
-            //       key: _formKey,
-            //       onPressed: submitLogin,
-            //       textButton: 'Não possui uma conta? Cadastre-se agora',
-            //       bgColor: Colors.white,
-            //       textColor: Colors.black,
-            //     ),
-            //   ),
-            // ),
-            Flexible(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: RoundedButtom(
-                  key: _formKey,
-                  onPressed: submitLogin,
-                  textButton: 'Continuar com o Google',
-                  bgColor: Colors.white,
-                  borderColor: Color.fromRGBO(226, 226, 226, 1),
-                  textColor: Color.fromRGBO(124, 124, 124, 1),
+            Container(
+              padding: const EdgeInsets.only(top: 10, bottom: 32),
+              child: RoundedButtom(
+                key: _formKey,
+                onPressed: submitLogin,
+                textWidget: Text(
+                  'Entrar'.toUpperCase(),
+                  style: TextStyle(
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                  ),
                 ),
               ),
             ),
-            Flexible(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: RoundedButtom(
-                  key: _formKey,
-                  onPressed: submitLogin,
-                  textButton: 'Continuar com o Facebook',
-                  bgColor: Color.fromRGBO(28, 116, 252, 1),
-                  borderColor: Color.fromRGBO(226, 226, 226, 1),
-                  textColor: Colors.white,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 32),
+                  child: Text('Não possui uma conta? '),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 32),
+                  child: InkWell(
+                    child: Text(
+                      'Cadastre-se agora',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                    onTap: goRegister,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: RoundedButtom(
+                key: _formKey,
+                onPressed: submitLogin,
+                textWidget: Text(
+                  'Continuar com o Google',
+                  style: TextStyle(
+                    color: Color.fromRGBO(124, 124, 124, 1),
+                  ),
+                ),
+                iconWidget: Image(
+                  image: AssetImage('lib/assets/images/google_logo.png'),
+                  height: 24.0,
+                ),
+                bgColor: Colors.white,
+                borderColor: Color.fromRGBO(226, 226, 226, 1),
+              ),
+            ),
+            Container(
+              child: RoundedButtom(
+                key: _formKey,
+                onPressed: submitLogin,
+                textWidget: Text(
+                  'Continuar com o Facebook',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                iconWidget: FaIcon(
+                  FontAwesomeIcons.facebookSquare,
+                  color: Colors.white,
+                ),
+                bgColor: Color.fromRGBO(28, 116, 252, 1),
+                borderColor: Color.fromRGBO(226, 226, 226, 1),
               ),
             ),
           ],

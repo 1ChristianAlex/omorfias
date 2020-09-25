@@ -1,6 +1,12 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class SecureStorage {
+abstract class ISecureStorage {
+  Future<String> getToken();
+  Future<void> setValue(String keyValue, String value);
+  Future<void> deleteValue(String keyValue);
+}
+
+class SecureStorage implements ISecureStorage {
   static final SecureStorage _singleton = SecureStorage._internal();
   final _storage = new FlutterSecureStorage();
 
@@ -11,7 +17,7 @@ class SecureStorage {
     return data;
   }
 
-  setToken(String keyValue, String value) async {
+  Future<void> setValue(String keyValue, String value) async {
     await _storage.write(key: keyValue, value: value);
   }
 
@@ -19,5 +25,9 @@ class SecureStorage {
 
   factory SecureStorage() {
     return _singleton;
+  }
+
+  Future<void> deleteValue(String keyValue) async {
+    await _storage.delete(key: keyValue);
   }
 }

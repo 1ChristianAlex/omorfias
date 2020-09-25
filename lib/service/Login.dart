@@ -9,6 +9,7 @@ import 'package:omorfias/service/Adapter.dart';
 
 abstract class ILoginService {
   Future<User> login(Login login);
+  Future<void> logout();
 }
 
 class LoginService implements ILoginService {
@@ -34,8 +35,12 @@ class LoginService implements ILoginService {
     };
 
     LoginResponse loginResponse = LoginResponse.fromJson(respose);
-    _secureStorage.setToken('token', loginResponse.token);
+    _secureStorage.setValue('token', loginResponse.token);
 
     return loginResponse.user;
+  }
+
+  Future<void> logout() async {
+    await _secureStorage.deleteValue('token');
   }
 }
