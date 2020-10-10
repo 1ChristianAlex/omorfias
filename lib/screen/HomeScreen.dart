@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, User>(
+      distinct: true,
       converter: (Store<AppState> store) => store.state.user,
       builder: (context, user) {
         return Scaffold(

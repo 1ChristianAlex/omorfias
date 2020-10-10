@@ -5,7 +5,7 @@ import 'package:omorfias/model/login.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/redux/actions.dart';
 import 'package:omorfias/redux/appState.dart';
-import 'package:omorfias/service/Login.dart';
+import 'package:omorfias/service/Auth/Auth.dart';
 import 'package:omorfias/widget/RoundedButtom.dart';
 import 'package:omorfias/widget/RoundedTextField.dart';
 import 'package:redux/redux.dart';
@@ -57,11 +57,11 @@ class _LoginFormState extends State<LoginForm> {
   void submitLogin() async {
     if (this._formKey.currentState.validate()) {
       Store<AppState> _store = StoreProvider.of<AppState>(context);
-      LoginService _loginService = LoginService();
+      AuthService _authService = AuthService();
 
       Login loginData = Login(email: email, password: password);
 
-      User userResponse = await _loginService.login(loginData);
+      User userResponse = await _authService.login(loginData);
 
       _store.dispatch(UpdateUserAction(userResponse));
       Navigator.pushReplacementNamed(context, '/home');

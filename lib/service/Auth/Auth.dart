@@ -5,34 +5,20 @@ import 'package:omorfias/config/SecureStorage.dart';
 import 'package:omorfias/enum/AcessLevel.dart';
 import 'package:omorfias/model/login.dart';
 import 'package:omorfias/model/user.dart';
-import 'package:omorfias/service/Adapter.dart';
+import 'package:omorfias/service/Adapter/Adapter.dart';
+import 'IAuth.dart';
 
-abstract class ILoginService {
-  Future<User> login(Login login);
-  Future<void> logout();
-}
-
-class LoginService implements ILoginService {
+class AuthService implements IAuthService {
   Adapter _adapter;
   SecureStorage _secureStorage;
 
-  LoginService() {
+  AuthService() {
     this._adapter = Adapter(Client());
     this._secureStorage = SecureStorage();
   }
 
   Future<User> login(Login login) async {
-    // final respose = await _adapter.postMethod('/login', jsonEncode(login));
-    final respose = {
-      'token': 'token',
-      'user': {
-        'id': 1,
-        'accessLevel': AccessLevel.serviceConsumer,
-        'name': 'Christian',
-        'lastName': 'Alexsander',
-        'userName': 'Chris'
-      }
-    };
+    final respose = await _adapter.postMethod('/login', jsonEncode(login));
 
     LoginResponse loginResponse = LoginResponse.fromJson(respose);
     _secureStorage.setValue('token', loginResponse.token);
