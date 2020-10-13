@@ -11,8 +11,6 @@ class SecureStorage implements ISecureStorage {
   final _storage = new FlutterSecureStorage();
 
   Future<String> getToken() async {
-    await _storage.write(key: 'token', value: 'value');
-
     String data = await _storage.read(key: 'token');
     return data;
   }

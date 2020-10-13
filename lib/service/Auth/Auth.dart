@@ -1,7 +1,6 @@
-import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:omorfias/config/SecureStorage.dart';
-import 'package:omorfias/model/login.dart';
+import 'package:omorfias/model/auth.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/service/Adapter/Adapter.dart';
 import 'IAuth.dart';
@@ -28,9 +27,9 @@ class AuthService implements IAuthService {
     await _secureStorage.deleteValue('token');
   }
 
-  Future<User> register(User userRegister) async {
+  Future<User> register(Register registerData) async {
     final respose =
-        await _adapter.postMethod('/register', userRegister.toJsonData());
+        await _adapter.postMethod('/register', registerData.toJsonData());
 
     LoginResponse loginResponse = LoginResponse.fromJson(respose);
     _secureStorage.setValue('token', loginResponse.token);

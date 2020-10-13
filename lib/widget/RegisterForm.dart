@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:omorfias/model/auth.dart';
+import 'package:omorfias/model/user.dart';
+import 'package:omorfias/redux/actions.dart';
+import 'package:omorfias/redux/appState.dart';
+import 'package:omorfias/service/Auth/Auth.dart';
 import 'package:omorfias/widget/RoundedButtom.dart';
 import 'package:omorfias/widget/RoundedTextField.dart';
+import 'package:redux/redux.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -12,6 +19,7 @@ class _RegisterFormState extends State<RegisterForm> {
   String name;
   String lastName;
   String email;
+  String userName;
   String password;
 
   @override
@@ -21,6 +29,7 @@ class _RegisterFormState extends State<RegisterForm> {
     name = '';
     lastName = '';
     email = '';
+    userName = '';
     password = '';
   }
 
@@ -42,6 +51,12 @@ class _RegisterFormState extends State<RegisterForm> {
     });
   }
 
+  void setUserName(String value) {
+    this.setState(() {
+      userName = value;
+    });
+  }
+
   void setPassord(String value) {
     this.setState(() {
       password = value;
@@ -49,7 +64,18 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void registerSubmit() async {
-    _formKeyRegister.currentState.validate();
+    if (_formKeyRegister.currentState.validate()) {
+      Store<AppState> _store = StoreProvider.of<AppState>(context);
+      AuthService _authService = AuthService();
+
+      Register registerData =
+          Register(name, lastName, email, userName, password);
+
+      User userResponse = await _authService.register(registerData);
+
+      _store.dispatch(UpdateUserAction(userResponse));
+      Navigator.pushReplacementNamed(context, '/home');
+    }
   }
 
   void goLogin() {
@@ -101,7 +127,7 @@ class _RegisterFormState extends State<RegisterForm> {
             Container(
               margin: EdgeInsets.only(bottom: 5),
               child: RoundedTextField(
-                onChanged: setEmail,
+                onChanged: setLastName,
                 placeholder: 'Último Nome',
                 validator: (value) {
                   if (value.length == 0) {
@@ -127,8 +153,8 @@ class _RegisterFormState extends State<RegisterForm> {
             Container(
               margin: EdgeInsets.only(bottom: 5),
               child: RoundedTextField(
-                onChanged: setEmail,
-                placeholder: 'Digite seu usuário',
+                onChanged: setUserName,
+                placeholder: 'Digite seu nome de usuário',
                 validator: (value) {
                   if (value.length == 0) {
                     return "Usuário é obrigatorio";

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:omorfias/model/login.dart';
+import 'package:omorfias/model/auth.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/redux/actions.dart';
 import 'package:omorfias/redux/appState.dart';

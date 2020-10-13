@@ -26,13 +26,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class OmorfiasApp extends StatelessWidget {
+class OmorfiasApp extends StatefulWidget {
+  @override
+  _OmorfiasAppState createState() => _OmorfiasAppState();
+}
+
+class _OmorfiasAppState extends State<OmorfiasApp> {
   final SecureStorage secureStorage = SecureStorage();
 
   Future<bool> hasToken() async {
     String token = await secureStorage.getToken();
+    bool isAuth = token.isNotEmpty;
 
-    return token.isNotEmpty;
+    return isAuth;
   }
 
   @override
@@ -40,20 +46,28 @@ class OmorfiasApp extends StatelessWidget {
     return FutureBuilder(
       future: hasToken(),
       builder: (BuildContext context, snapshot) {
-        return MaterialApp(
-          title: 'Omorfias',
-          theme: ThemeData(
-            primarySwatch: Colors.purple,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            fontFamily: DesignSystem.appFont,
+        if (snapshot.hasData) {
+          return MaterialApp(
+            title: 'Omorfias',
+            theme: ThemeData(
+              primarySwatch: Colors.purple,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              fontFamily: DesignSystem.appFont,
+            ),
+            routes: <String, WidgetBuilder>{
+              '/register': (BuildContext context) => RegisterScreen(),
+              '/login': (BuildContext context) => LoginScreen(),
+              '/home': (BuildContext context) => HomeScreen(),
+              '/': (BuildContext context) =>
+                  snapshot.data == true ? HomeScreen() : LoginScreen()
+            },
+            initialRoute: '/',
+          );
+        }
+        return Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
           ),
-          routes: <String, WidgetBuilder>{
-            '/register': (BuildContext context) => RegisterScreen(),
-            '/login': (BuildContext context) => LoginScreen(),
-            '/home': (BuildContext context) => HomeScreen(),
-            '/': (BuildContext context) =>
-                snapshot.data == null ? LoginScreen() : HomeScreen()
-          },
         );
       },
     );
