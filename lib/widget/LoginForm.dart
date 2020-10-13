@@ -93,10 +93,10 @@ class _LoginFormState extends State<LoginForm> {
               padding: EdgeInsets.only(bottom: 10),
               child: RoundedTextField(
                 onChanged: setEmail,
-                placeholder: 'E-mail',
+                placeholder: 'E-mail / usuário',
                 validator: (value) {
                   if (value.length == 0) {
-                    return "Email esta vazio";
+                    return "E-mail / usuário esta vazio";
                   }
                   return null;
                 },

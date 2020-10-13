@@ -127,6 +127,19 @@ class _RegisterFormState extends State<RegisterForm> {
             Container(
               margin: EdgeInsets.only(bottom: 5),
               child: RoundedTextField(
+                onChanged: setEmail,
+                placeholder: 'Digite seu usuário',
+                validator: (value) {
+                  if (value.length == 0) {
+                    return "Usuário é obrigatorio";
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 5),
+              child: RoundedTextField(
                 hideText: true,
                 onChanged: setPassord,
                 placeholder: 'Senha',

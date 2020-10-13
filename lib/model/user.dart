@@ -19,6 +19,14 @@ class User {
     );
   }
 
+  Map<String, dynamic> toJsonData() => {
+        'id': id,
+        'accessLevel': accessLevel,
+        'lastName': lastName,
+        'name': name,
+        'userName': userName,
+      };
+
   factory User.initialUser() {
     return User(
       id: 0,

@@ -8,17 +8,19 @@ class DefaultHeader {
 
   Future<void> _loadHeader() async {
     SecureStorage secureStorage = SecureStorage();
-    await secureStorage.setValue('token', 'value');
     String token = await secureStorage.getToken();
 
     if (token.isNotEmpty) {
       this._headers['Authentication'] = token;
     }
+
+    this._headers['Content-Type'] = 'application/json';
   }
 
-  Future<void> getHeader(Map<String, String> header) async {
+  Future<Map<String, String>> getHeader(Map<String, String> header) async {
     await _loadHeader();
-    header.addAll(_headers);
+    _headers.addAll(header);
+    return _headers;
   }
 }
 
@@ -28,24 +30,34 @@ class Adapter implements IAdapter {
   String baseUrl;
 
   Adapter(this._clientHttp, {this.baseUrl}) {
-    this.baseUrl = 'http://localhost:5000';
+    this.baseUrl = 'http://192.168.10.109:5000';
   }
 
-  Future<void> _decorateHeader(Map<String, String> headers) async {
-    if (headers.length > 0) {
-      await _defaultHeader.getHeader(headers);
+  String _decorateUrl(String url) => '${this.baseUrl}$url';
+
+  String _decorateBody(dynamic body) => jsonEncode(body);
+
+  Future<Map<String, String>> _decorateHeader(
+      Map<String, String> headers) async {
+    if (headers == null) {
+      headers = new Map<String, String>();
     }
+
+    return await _defaultHeader.getHeader(headers);
   }
 
   Future getMethod(String url, {Map<String, String> headers}) async {
-    await _decorateHeader(headers);
+    headers = await _decorateHeader(headers);
+    url = this._decorateUrl(url);
 
     Response response = await this._clientHttp.get(url, headers: headers);
     return json.decode(response.body);
   }
 
   Future postMethod(String url, body, {Map<String, String> headers}) async {
-    await _decorateHeader(headers);
+    body = _decorateBody(body);
+    headers = await _decorateHeader(headers);
+    url = this._decorateUrl(url);
 
     Response response =
         await this._clientHttp.post(url, headers: headers, body: body);
@@ -53,7 +65,9 @@ class Adapter implements IAdapter {
   }
 
   Future putMethod(String url, body, {Map<String, String> headers}) async {
-    await _decorateHeader(headers);
+    body = _decorateBody(body);
+    headers = await _decorateHeader(headers);
+    url = this._decorateUrl(url);
 
     Response response =
         await this._clientHttp.put(url, headers: headers, body: body);
@@ -61,7 +75,9 @@ class Adapter implements IAdapter {
   }
 
   Future deleteMethod(String url, body, {Map<String, String> headers}) async {
-    await _decorateHeader(headers);
+    body = _decorateBody(body);
+    headers = await _decorateHeader(headers);
+    url = this._decorateUrl(url);
 
     Response response = await this._clientHttp.delete(url, headers: headers);
     return json.decode(response.body);
