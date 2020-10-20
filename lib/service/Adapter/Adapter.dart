@@ -10,7 +10,7 @@ class DefaultHeader {
     SecureStorage secureStorage = SecureStorage();
     String token = await secureStorage.getToken();
 
-    if (token.isNotEmpty) {
+    if (token != null && token.isNotEmpty) {
       this._headers['Authentication'] = token;
     }
 
@@ -30,7 +30,7 @@ class Adapter implements IAdapter {
   String baseUrl;
 
   Adapter(this._clientHttp, {this.baseUrl}) {
-    this.baseUrl = 'http://192.168.0.106:5000';
+    this.baseUrl = 'http://192.168.0.109:5000';
   }
 
   String _decorateUrl(String url) => '${this.baseUrl}$url';

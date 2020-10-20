@@ -36,7 +36,10 @@ class _OmorfiasAppState extends State<OmorfiasApp> {
 
   Future<bool> hasToken() async {
     String token = await secureStorage.getToken();
-    bool isAuth = token.isNotEmpty;
+    bool isAuth = false;
+    if (token != null) {
+      isAuth = token.isNotEmpty;
+    }
 
     return isAuth;
   }
@@ -64,10 +67,25 @@ class _OmorfiasAppState extends State<OmorfiasApp> {
             initialRoute: '/',
           );
         }
-        return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
+        return MaterialApp(
+          title: 'Omorfias',
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: DesignSystem.appFont,
           ),
+          builder: (BuildContext context, snapshot) {
+            return Scaffold(
+              body: SingleChildScrollView(
+                child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
     );

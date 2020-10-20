@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
   final double heightLogo;
-  String logoTag = 'logoImagem';
+  final String logoTag = 'logoImagem';
 
   Logo({this.heightLogo});
 
