@@ -9,21 +9,18 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Flexible(
-                child: Container(
-                  child: Logo(),
-                  padding: EdgeInsets.only(top: 20),
-                ),
+              Container(
+                child: Logo(),
+                padding: EdgeInsets.only(top: 20),
               ),
-              Flexible(
+              Container(
                 child: LoginForm(),
-                flex: 6,
-              )
+                padding: EdgeInsets.only(top: 20),
+              ),
             ],
           ),
         ),

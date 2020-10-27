@@ -13,7 +13,7 @@ class Logo extends StatelessWidget {
         tag: logoTag,
         child: Image(
           height: this.heightLogo ?? 150,
-          image: AssetImage('lib/assets/images/logo.png'),
+          image: AssetImage('assets/images/logo.png'),
         ),
       ),
     );

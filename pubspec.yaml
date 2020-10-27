@@ -47,8 +47,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/assets/images/logo.png
-    - lib/assets/images/google_logo.png
+    - assets/images/logo.png
+    - assets/images/google_logo.png
+    - assets/images/bg-city.jpg
+    - assets/images/barber-store.jpg
+    - assets/images/hair-store.jpg
+    - assets/images/tatoo-store.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -65,11 +69,11 @@ flutter:
   fonts:
     - family: BebasNeue
       fonts:
-        - asset: lib/assets/fonts/BebasNeue.ttf
+        - asset: assets/fonts/BebasNeue.ttf
 
     - family: Avenir
       fonts:
-        - asset: lib/assets/fonts/Avenir.ttc
+        - asset: assets/fonts/Avenir.ttc
 
   #
   # For details regarding fonts from package dependencies,

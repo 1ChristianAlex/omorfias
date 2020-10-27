@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/redux/appState.dart';
+import 'package:omorfias/widget/BannerExplorar.dart';
+import 'package:omorfias/widget/BottomBar.dart';
+import 'package:omorfias/widget/HorizontalCardScroll.dart';
+import 'package:omorfias/widget/ListCardStore.dart';
+import 'package:omorfias/widget/SearchBar.dart';
 import 'package:redux/redux.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,8 +22,23 @@ class _HomeScreenState extends State<HomeScreen> {
       converter: (Store<AppState> store) => store.state.user,
       builder: (context, user) {
         return Scaffold(
-          appBar: AppBar(title: Text(user.userName)),
-          body: Container(),
+          backgroundColor: Colors.white,
+          bottomNavigationBar: BottomBar(),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 50, bottom: 40),
+                  child: OmorfiasSearchBar(),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  child: BannerExplorar(),
+                ),
+                Container(child: ListCardStore())
+              ],
+            ),
+          ),
         );
       },
     );

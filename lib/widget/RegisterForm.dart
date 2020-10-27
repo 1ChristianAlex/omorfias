@@ -242,7 +242,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
                 bgColor: Colors.white,
                 iconWidget: Image(
-                  image: AssetImage('lib/assets/images/google_logo.png'),
+                  image: AssetImage('assets/images/google_logo.png'),
                   height: 24.0,
                 ),
                 borderColor: Color.fromRGBO(226, 226, 226, 1),

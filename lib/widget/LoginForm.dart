@@ -174,7 +174,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
                 iconWidget: Image(
-                  image: AssetImage('lib/assets/images/google_logo.png'),
+                  image: AssetImage('assets/images/google_logo.png'),
                   height: 24.0,
                 ),
                 bgColor: Colors.white,
