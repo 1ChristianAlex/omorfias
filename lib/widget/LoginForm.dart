@@ -32,12 +32,14 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   String email;
   String password;
+  String errorText;
 
   @override
   void initState() {
     super.initState();
     email = '';
     password = '';
+    errorText = '';
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -55,16 +57,26 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void submitLogin() async {
-    if (this._formKey.currentState.validate()) {
-      Store<AppState> _store = StoreProvider.of<AppState>(context);
-      AuthService _authService = AuthService();
+    setState(() {
+      errorText = '';
+    });
 
-      Login loginData = Login(email: email, password: password);
+    try {
+      if (this._formKey.currentState.validate()) {
+        Store<AppState> _store = StoreProvider.of<AppState>(context);
+        AuthService _authService = AuthService();
 
-      User userResponse = await _authService.login(loginData);
+        Login loginData = Login(email: email, password: password);
 
-      _store.dispatch(UpdateUserAction(userResponse));
-      Navigator.pushReplacementNamed(context, '/home');
+        User userResponse = await _authService.login(loginData);
+
+        _store.dispatch(UpdateUserAction(userResponse));
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    } catch (error) {
+      setState(() {
+        errorText = error['text'] ?? 'Erro no login';
+      });
     }
   }
 
@@ -114,6 +126,15 @@ class _LoginFormState extends State<LoginForm> {
                   return null;
                 },
               ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: errorText.isNotEmpty
+                  ? Text(
+                      errorText,
+                      style: TextStyle(color: Colors.red),
+                    )
+                  : null,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

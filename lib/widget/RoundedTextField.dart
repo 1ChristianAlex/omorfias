@@ -6,9 +6,15 @@ class RoundedTextField extends StatelessWidget {
   final String Function(String) validator;
   final String placeholder;
   final bool hideText;
+  final TextEditingController controller;
 
-  RoundedTextField(
-      {this.onChanged, this.validator, this.placeholder, this.hideText});
+  RoundedTextField({
+    this.onChanged,
+    this.validator,
+    this.placeholder,
+    this.hideText,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +32,7 @@ class RoundedTextField extends StatelessWidget {
         ),
         validator: validator,
         onChanged: onChanged,
+        controller: controller,
       ),
     );
   }

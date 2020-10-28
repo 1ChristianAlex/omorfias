@@ -35,7 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.only(bottom: 20),
                   child: BannerExplorar(),
                 ),
-                Container(child: ListCardStore())
+                Container(
+                  child: ListCardStore(),
+                ),
+                Container(
+                  child: ListCardStore(),
+                ),
               ],
             ),
           ),

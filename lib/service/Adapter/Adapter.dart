@@ -51,6 +51,10 @@ class Adapter implements IAdapter {
     url = this._decorateUrl(url);
 
     Response response = await this._clientHttp.get(url, headers: headers);
+
+    if (response.statusCode == 400) {
+      throw json.decode(response.body);
+    }
     return json.decode(response.body);
   }
 
@@ -61,6 +65,11 @@ class Adapter implements IAdapter {
 
     Response response =
         await this._clientHttp.post(url, headers: headers, body: body);
+
+    if (response.statusCode == 400) {
+      throw json.decode(response.body);
+    }
+
     return json.decode(response.body);
   }
 
@@ -71,6 +80,9 @@ class Adapter implements IAdapter {
 
     Response response =
         await this._clientHttp.put(url, headers: headers, body: body);
+    if (response.statusCode == 400) {
+      throw json.decode(response.body);
+    }
     return json.decode(response.body);
   }
 
@@ -80,6 +92,10 @@ class Adapter implements IAdapter {
     url = this._decorateUrl(url);
 
     Response response = await this._clientHttp.delete(url, headers: headers);
+
+    if (response.statusCode == 400) {
+      throw json.decode(response.body);
+    }
     return json.decode(response.body);
   }
 }

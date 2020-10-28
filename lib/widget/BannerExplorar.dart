@@ -27,8 +27,9 @@ class BannerExplorar extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.symmetric(
-                vertical: DesignSystem.spacingMargin,
-                horizontal: DesignSystem.spacingMargin),
+              vertical: DesignSystem.spacingMargin,
+              horizontal: DesignSystem.spacingMargin,
+            ),
             child: Text(
               'Descubra negócios incríveis perto de você'.toUpperCase(),
               textAlign: TextAlign.center,

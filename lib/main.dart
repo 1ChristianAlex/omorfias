@@ -69,6 +69,7 @@ class _OmorfiasAppState extends State<OmorfiasApp> {
         }
         return MaterialApp(
           title: 'Omorfias',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.purple,
             visualDensity: VisualDensity.adaptivePlatformDensity,
