@@ -52,6 +52,7 @@ class _OmorfiasAppState extends State<OmorfiasApp> {
         if (snapshot.hasData) {
           return MaterialApp(
             title: 'Omorfias',
+            debugShowCheckedModeBanner: true,
             theme: ThemeData(
               primarySwatch: Colors.grey,
               visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -69,7 +70,7 @@ class _OmorfiasAppState extends State<OmorfiasApp> {
         }
         return MaterialApp(
           title: 'Omorfias',
-          debugShowCheckedModeBanner: false,
+          debugShowCheckedModeBanner: true,
           theme: ThemeData(
             primarySwatch: Colors.purple,
             visualDensity: VisualDensity.adaptivePlatformDensity,

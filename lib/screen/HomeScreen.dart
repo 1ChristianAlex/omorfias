@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/redux/appState.dart';
-import 'package:omorfias/widget/BannerExplorar.dart';
+import 'package:omorfias/widget/ExplorerSection.dart';
 import 'package:omorfias/widget/BottomBar.dart';
 import 'package:omorfias/widget/HorizontalCardScroll.dart';
-import 'package:omorfias/widget/ListCardStore.dart';
+import 'package:omorfias/widget/CardsStoreSection.dart';
+import 'package:omorfias/widget/NewExperienceSection.dart';
 import 'package:omorfias/widget/SearchBar.dart';
 import 'package:redux/redux.dart';
 
@@ -33,13 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
-                  child: BannerExplorar(),
+                  child: ExplorerSection(),
                 ),
                 Container(
-                  child: ListCardStore(),
+                  child: CardsStoreSection(),
                 ),
                 Container(
-                  child: ListCardStore(),
+                  child: NewExperiencesSection(),
                 ),
               ],
             ),

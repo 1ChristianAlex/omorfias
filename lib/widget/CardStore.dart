@@ -1,44 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
 
-class ListCardStore extends StatefulWidget {
-  @override
-  _ListCardStoreState createState() => _ListCardStoreState();
-}
+class CardStoreItem extends StatelessWidget {
+  final BuildContext context;
+  final String title;
+  final String description;
+  final String image;
+  final Color textColor;
+  final Color descriptionColor;
+  final bool hasShadow;
 
-class _ListCardStoreState extends State<ListCardStore> {
+  const CardStoreItem({
+    Key key,
+    @required this.context,
+    @required this.title,
+    @required this.description,
+    @required this.image,
+    this.textColor,
+    this.descriptionColor,
+    this.hasShadow = true,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.35,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          cardStore(
-            'Estúdios de Tatuagem',
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
-            'assets/images/tatoo-store.jpg',
-          ),
-          cardStore(
-            'Estúdios de Tatuagem',
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
-            'assets/images/hair-store.jpg',
-          ),
-          cardStore(
-            'Estúdios de Tatuagem',
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
-            'assets/images/barber-store.jpg',
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container cardStore(
-    String title,
-    String description,
-    String image,
-  ) {
     final widthCard = MediaQuery.of(context).size.width * 0.92;
 
     return Container(
@@ -56,14 +40,16 @@ class _ListCardStoreState extends State<ListCardStore> {
         borderRadius: BorderRadius.all(
           Radius.circular(DesignSystem.squaredRounded),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromRGBO(204, 204, 204, 1),
-            offset: Offset.fromDirection(1, 3),
-            blurRadius: 15,
-            spreadRadius: 1,
-          ),
-        ],
+        boxShadow: hasShadow
+            ? [
+                BoxShadow(
+                  color: Color.fromRGBO(204, 204, 204, 1),
+                  offset: Offset.fromDirection(1, 3),
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                )
+              ]
+            : null,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.all(
@@ -83,17 +69,17 @@ class _ListCardStoreState extends State<ListCardStore> {
                 ),
                 width: widthCard,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: descriptionColor ?? Colors.white,
                   border: Border(
                     bottom: BorderSide(
-                      color: Colors.white,
+                      color: descriptionColor ?? Colors.white,
                     ),
                   ),
                 ),
                 child: Text(
                   title.toUpperCase(),
                   style: TextStyle(
-                    color: Colors.black,
+                    color: textColor ?? Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -108,17 +94,17 @@ class _ListCardStoreState extends State<ListCardStore> {
                 ),
                 width: widthCard,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: descriptionColor ?? Colors.white,
                   border: Border(
                     top: BorderSide(
-                      color: Colors.white,
+                      color: descriptionColor ?? Colors.white,
                     ),
                   ),
                 ),
                 child: Text(
                   description,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: textColor ?? Colors.black,
                   ),
                 ),
               )

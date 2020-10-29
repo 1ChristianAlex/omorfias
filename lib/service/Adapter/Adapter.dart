@@ -30,7 +30,7 @@ class Adapter implements IAdapter {
   String baseUrl;
 
   Adapter(this._clientHttp, {this.baseUrl}) {
-    this.baseUrl = 'http://192.168.0.109:5000';
+    this.baseUrl = 'http://192.168.10.108:5000';
   }
 
   String _decorateUrl(String url) => '${this.baseUrl}$url';

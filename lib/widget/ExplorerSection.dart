@@ -3,7 +3,7 @@ import 'package:omorfias/enum/DesignSystem.dart';
 import 'package:omorfias/service/Auth/Auth.dart';
 import 'package:omorfias/widget/SquaredButton.dart';
 
-class BannerExplorar extends StatelessWidget {
+class ExplorerSection extends StatelessWidget {
   void logout() {
     AuthService _authService = AuthService();
     _authService.logout();
@@ -58,9 +58,10 @@ class BannerExplorar extends StatelessWidget {
             textWidget: Text(
               'Explorar'.toUpperCase(),
               style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
           )
         ],
