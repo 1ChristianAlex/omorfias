@@ -8,6 +8,38 @@ class NewExperiencesSection extends StatelessWidget {
   final descriptionColor = Color.fromRGBO(45, 52, 54, 1);
   final textColor = Colors.white;
 
+  List<Map<String, dynamic>> mockNewExperienceCards() {
+    return [
+      {
+        'textColor': textColor,
+        'descriptionColor': descriptionColor,
+        'hasShadow': hasShadow,
+        'title': 'Estúdios de Tatuagem',
+        'description':
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+        'image': 'assets/images/experience-3.jpeg',
+      },
+      {
+        'textColor': textColor,
+        'descriptionColor': descriptionColor,
+        'hasShadow': hasShadow,
+        'title': 'Estúdios de Tatuagem',
+        'description':
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+        'image': 'assets/images/experience-2.jpeg',
+      },
+      {
+        'textColor': textColor,
+        'descriptionColor': descriptionColor,
+        'hasShadow': hasShadow,
+        'title': 'Barbearia',
+        'description':
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+        'image': 'assets/images/experience-1.jpeg',
+      }
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,40 +77,20 @@ class NewExperiencesSection extends StatelessWidget {
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
-            child: ListView(
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: [
-                CardStoreItem(
-                  textColor: textColor,
-                  descriptionColor: descriptionColor,
-                  hasShadow: hasShadow,
-                  context: context,
-                  title: 'Estúdios de Tatuagem',
-                  description:
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
-                  image: 'assets/images/experience-3.jpeg',
-                ),
-                CardStoreItem(
-                  textColor: textColor,
-                  descriptionColor: descriptionColor,
-                  hasShadow: hasShadow,
-                  context: context,
-                  title: 'Estúdios de Tatuagem',
-                  description:
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
-                  image: 'assets/images/experience-2.jpeg',
-                ),
-                CardStoreItem(
-                  textColor: textColor,
-                  descriptionColor: descriptionColor,
-                  hasShadow: hasShadow,
-                  context: context,
-                  title: 'Estúdios de Tatuagem',
-                  description:
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
-                  image: 'assets/images/experience-1.jpeg',
-                ),
-              ],
+              itemCount: mockNewExperienceCards().length,
+              itemBuilder: (context, index) {
+                final itemCard = mockNewExperienceCards()[index];
+                return CardStoreItem(
+                  title: itemCard['title'],
+                  description: itemCard['description'],
+                  image: itemCard['image'],
+                  descriptionColor: itemCard['descriptionColor'],
+                  hasShadow: itemCard['hasShadow'],
+                  textColor: itemCard['textColor'],
+                );
+              },
             ),
           ),
           Container(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
 
 class CardStoreItem extends StatelessWidget {
-  final BuildContext context;
   final String title;
   final String description;
   final String image;
@@ -12,7 +11,6 @@ class CardStoreItem extends StatelessWidget {
 
   const CardStoreItem({
     Key key,
-    @required this.context,
     @required this.title,
     @required this.description,
     @required this.image,

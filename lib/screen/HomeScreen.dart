@@ -7,6 +7,7 @@ import 'package:omorfias/widget/BottomBar.dart';
 import 'package:omorfias/widget/HorizontalCardScroll.dart';
 import 'package:omorfias/widget/CardsStoreSection.dart';
 import 'package:omorfias/widget/NewExperienceSection.dart';
+import 'package:omorfias/widget/RecommendedSection.dart';
 import 'package:omorfias/widget/SearchBar.dart';
 import 'package:redux/redux.dart';
 
@@ -40,8 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: CardsStoreSection(),
                 ),
                 Container(
+                  margin: EdgeInsets.only(bottom: 40),
                   child: NewExperiencesSection(),
                 ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 40),
+                  child: RecommendedSection(),
+                )
               ],
             ),
           ),
