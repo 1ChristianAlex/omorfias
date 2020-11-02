@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
-import 'package:omorfias/widget/PopButton.dart';
 
 class ExplorerFullSection extends StatefulWidget {
   @override

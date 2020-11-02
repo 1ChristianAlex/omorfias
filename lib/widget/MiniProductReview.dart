@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
-import 'package:omorfias/utils/Currency.dart';
 
 class MiniProductReview extends StatelessWidget {
   @override

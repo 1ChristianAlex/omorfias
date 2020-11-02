@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omorfias/service/Auth/Auth.dart';
 
 class BottomBar extends StatefulWidget {
   @override
@@ -8,9 +9,15 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 1;
 
+  void logOut(int index) {
+    AuthService _auth = AuthService();
+    _auth.logout();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      onTap: logOut,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.search),

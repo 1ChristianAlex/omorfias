@@ -17,7 +17,7 @@ class _PopButtonState extends State<PopButton> {
       child: MaterialButton(
         color: Colors.white,
         shape: CircleBorder(),
-        onPressed: () {},
+        onPressed: popScreen,
         child: Padding(
           padding: EdgeInsets.all(15),
           child: Icon(
