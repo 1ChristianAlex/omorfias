@@ -2,21 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:omorfias/model/user.dart';
 import 'package:omorfias/redux/appState.dart';
+import 'package:omorfias/widget/CovidWarning.dart';
 import 'package:omorfias/widget/ExplorerSection.dart';
 import 'package:omorfias/widget/BottomBar.dart';
-import 'package:omorfias/widget/HorizontalCardScroll.dart';
-import 'package:omorfias/widget/CardsStoreSection.dart';
+import 'package:omorfias/widget/CardsCategorieSection.dart';
 import 'package:omorfias/widget/NewExperienceSection.dart';
 import 'package:omorfias/widget/RecommendedSection.dart';
 import 'package:omorfias/widget/SearchBar.dart';
 import 'package:redux/redux.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, User>(
@@ -47,6 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   margin: EdgeInsets.only(bottom: 40),
                   child: RecommendedSection(),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 40),
+                  child: CovidWarning(),
                 )
               ],
             ),

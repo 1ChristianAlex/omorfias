@@ -1,33 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
-import 'package:omorfias/widget/SquaredButton.dart';
+import 'package:omorfias/widget/PopButton.dart';
 
-class ExplorerSection extends StatefulWidget {
+class ExplorerFullSection extends StatefulWidget {
   @override
-  _ExplorerSectionState createState() => _ExplorerSectionState();
+  _ExplorerFullSectionState createState() => _ExplorerFullSectionState();
 }
 
-class _ExplorerSectionState extends State<ExplorerSection> {
-  void goExplorer() {
-    Navigator.pushNamed(context, '/explorer');
-  }
-
+class _ExplorerFullSectionState extends State<ExplorerFullSection> {
   @override
   Widget build(BuildContext context) {
     return Hero(
       tag: 'assets/images/bg-city.jpg',
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: DesignSystem.spacingMargin),
         height: MediaQuery.of(context).size.height * 0.7,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(DesignSystem.squaredRounded),
-          ),
           image: DecorationImage(
               image: AssetImage('assets/images/bg-city.jpg'), fit: BoxFit.fill),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
@@ -36,11 +28,11 @@ class _ExplorerSectionState extends State<ExplorerSection> {
                 horizontal: DesignSystem.spacingMargin,
               ),
               child: Text(
-                'Descubra negócios incríveis perto de você'.toUpperCase(),
+                'Novos estilos esperam por você'.toUpperCase(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -57,18 +49,6 @@ class _ExplorerSectionState extends State<ExplorerSection> {
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
-            SquaredButton(
-              onPress: goExplorer,
-              primary: true,
-              textWidget: Text(
-                'Explorar'.toUpperCase(),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-            )
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
 import 'package:omorfias/widget/SquaredButton.dart';
-import 'CardStore.dart';
+import 'CardStoreCategorie.dart';
 
 class NewExperiencesSection extends StatelessWidget {
   final bool hasShadow = false;

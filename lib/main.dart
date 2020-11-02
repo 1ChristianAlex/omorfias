@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:omorfias/config/SecureStorage.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
 import 'package:omorfias/redux/appState.dart';
+import 'package:omorfias/screen/ExplorerScreen.dart';
 import 'package:omorfias/screen/HomeScreen.dart';
 import 'package:omorfias/screen/LoginScreen.dart';
 import 'package:omorfias/screen/RegisterScreen.dart';
@@ -62,6 +63,7 @@ class _OmorfiasAppState extends State<OmorfiasApp> {
               '/register': (BuildContext context) => RegisterScreen(),
               '/login': (BuildContext context) => LoginScreen(),
               '/home': (BuildContext context) => HomeScreen(),
+              '/explorer': (BuildContext context) => ExplorerScreen(),
               '/': (BuildContext context) =>
                   snapshot.data == true ? HomeScreen() : LoginScreen()
             },
