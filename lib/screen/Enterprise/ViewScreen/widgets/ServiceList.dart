@@ -9,9 +9,14 @@ import '../FormContext.dart';
 class ServiceList extends StatefulWidget {
   final FormContext formContext;
   final Function setFormContext;
+  final List<ServiceProduct> serviceList;
 
-  const ServiceList({Key key, this.formContext, this.setFormContext})
-      : super(key: key);
+  const ServiceList({
+    Key key,
+    this.formContext,
+    this.setFormContext,
+    this.serviceList,
+  }) : super(key: key);
 
   @override
   _ServiceListState createState() => _ServiceListState();
@@ -40,14 +45,14 @@ class _ServiceListState extends State<ServiceList> {
           Container(
             child: ListView.builder(
               scrollDirection: Axis.vertical,
-              itemCount: 5,
+              itemCount: widget.serviceList.length,
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ServiceItem(
                   formContext: widget.formContext,
                   setFormContext: widget.setFormContext,
-                  serviceProduct: ServiceProduct(),
+                  serviceProduct: widget.serviceList[index],
                 );
               },
             ),
@@ -63,9 +68,12 @@ class ServiceItem extends StatelessWidget {
   final Function setFormContext;
   final ServiceProduct serviceProduct;
 
-  ServiceItem(
-      {Key key, this.formContext, this.setFormContext, this.serviceProduct})
-      : super(key: key);
+  ServiceItem({
+    Key key,
+    this.formContext,
+    this.setFormContext,
+    this.serviceProduct,
+  }) : super(key: key);
 
   void onChange(bool isSelected) {
     formContext.servicesSelected[serviceProduct.id] = isSelected;
@@ -75,7 +83,7 @@ class ServiceItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardCheckBox(
-      isSelected: formContext.servicesSelected[serviceProduct.id],
+      isSelected: formContext.servicesSelected[serviceProduct.id] ?? false,
       onChange: onChange,
       child: Column(
         children: [
@@ -83,7 +91,7 @@ class ServiceItem extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 10),
             alignment: Alignment.centerLeft,
             child: Text(
-              serviceProduct.title ?? 'Corte Simples',
+              serviceProduct.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
@@ -94,8 +102,7 @@ class ServiceItem extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 10),
             alignment: Alignment.centerLeft,
             child: Text(
-              serviceProduct.description ??
-                  'Hidratação com produtos específicos para cabelos crespos e anelados, e corte simples.',
+              serviceProduct.description,
               style: TextStyle(
                 fontSize: 14,
               ),
@@ -108,7 +115,7 @@ class ServiceItem extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 10, right: 10),
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  Currency.doubleToCurrency(serviceProduct.price ?? 35.00),
+                  Currency.doubleToCurrency(serviceProduct.price),
                   style: TextStyle(
                     color: Colors.green,
                     fontSize: 18,
@@ -120,8 +127,7 @@ class ServiceItem extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 10),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        Currency.doubleToCurrency(
-                            serviceProduct.oldPrice ?? 35.00),
+                        Currency.doubleToCurrency(serviceProduct.oldPrice),
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.black54,

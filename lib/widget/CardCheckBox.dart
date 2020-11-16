@@ -13,7 +13,7 @@ class CardCheckBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return CardItemShadow(
       child: GestureDetector(
-        onTap: () => {onChange(!isSelected ?? true)},
+        onTap: () => {onChange(!isSelected)},
         child: Container(
           padding: EdgeInsets.all(DesignSystem.spacingMargin - 10),
           color: Colors.white,
@@ -25,7 +25,7 @@ class CardCheckBox extends StatelessWidget {
               ),
               Expanded(
                 child: Checkbox(
-                  value: isSelected ?? false,
+                  value: isSelected,
                   onChanged: (checked) => {onChange(checked)},
                 ),
               )

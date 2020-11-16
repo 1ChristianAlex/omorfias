@@ -7,8 +7,11 @@ class ConfirmSchedulingButtons extends StatefulWidget {
   final FormContext formContext;
   final Function setFormContext;
 
-  ConfirmSchedulingButtons({Key key, this.formContext, this.setFormContext})
-      : super(key: key);
+  ConfirmSchedulingButtons({
+    Key key,
+    this.formContext,
+    this.setFormContext,
+  }) : super(key: key);
 
   @override
   _ConfirmSchedulingButtonsState createState() =>

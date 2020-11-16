@@ -9,8 +9,11 @@ class ServiceLocation extends StatefulWidget {
   final FormContext formContext;
   final Function setFormContext;
 
-  const ServiceLocation({Key key, this.formContext, this.setFormContext})
-      : super(key: key);
+  const ServiceLocation({
+    Key key,
+    this.formContext,
+    this.setFormContext,
+  }) : super(key: key);
   @override
   _ServiceLocationState createState() => _ServiceLocationState();
 }

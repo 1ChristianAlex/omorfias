@@ -6,7 +6,10 @@ import 'package:omorfias/utils/Currency.dart';
 class MiniProduct extends StatelessWidget {
   final ServiceProduct product;
 
-  MiniProduct({Key key, this.product}) : super(key: key);
+  MiniProduct({
+    Key key,
+    this.product,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

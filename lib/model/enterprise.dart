@@ -1,4 +1,5 @@
 import 'package:omorfias/enum/CategoryEnum.dart';
+import 'package:omorfias/model/serviceProduct.dart';
 
 class Enterprise {
   final int id;
@@ -13,9 +14,11 @@ class Enterprise {
   final int cpf;
   final String category;
   final String urlImage;
+  final List<ServiceProduct> services;
 
   Enterprise({
     this.id,
+    this.services,
     this.name,
     this.evaluation,
     this.description,
@@ -30,6 +33,10 @@ class Enterprise {
   });
 
   factory Enterprise.fromJson(dynamic json) {
+    List<ServiceProduct> services = List<ServiceProduct>();
+    json['services'].forEach((serviceItem) {
+      services.add(ServiceProduct.fromJson(serviceItem));
+    });
     return Enterprise(
       id: json['id'],
       name: json['name'],
@@ -43,6 +50,7 @@ class Enterprise {
       cpf: json['cpf'],
       category: getCaregoryName(json['category']),
       urlImage: json['urlImage'].toString().trim(),
+      services: services,
     );
   }
 }

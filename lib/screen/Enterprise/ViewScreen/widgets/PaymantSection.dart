@@ -9,8 +9,11 @@ class PaymentSection extends StatefulWidget {
   final FormContext formContext;
   final Function setFormContext;
 
-  PaymentSection({Key key, this.formContext, this.setFormContext})
-      : super(key: key);
+  PaymentSection({
+    Key key,
+    this.formContext,
+    this.setFormContext,
+  }) : super(key: key);
 
   @override
   _PaymentSectionState createState() => _PaymentSectionState();

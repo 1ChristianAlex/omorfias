@@ -4,7 +4,10 @@ class Login {
   final String email;
   final String password;
 
-  Login({this.email, this.password});
+  Login({
+    this.email,
+    this.password,
+  });
 
   Map<String, dynamic> toJsonData() => {
         'email': email,

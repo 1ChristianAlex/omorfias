@@ -69,6 +69,7 @@ class _EnterpriseScreenState extends State<EnterpriseScreen> {
                   EnterpriseDescription(
                     name: enterprise.name,
                     review: enterprise.evaluation,
+                    description: enterprise.description,
                   ),
                   SchedulingSection(),
                   ServiceLocation(
@@ -78,6 +79,7 @@ class _EnterpriseScreenState extends State<EnterpriseScreen> {
                   ServiceList(
                     formContext: formContext,
                     setFormContext: setFormContext,
+                    serviceList: enterprise.services,
                   ),
                   PerformSchedulingSection(
                     formContext: formContext,

@@ -7,7 +7,13 @@ class User {
   final String userName;
   final int accessLevel;
 
-  User({this.userName, this.accessLevel, this.id, this.lastName, this.name});
+  User({
+    this.userName,
+    this.accessLevel,
+    this.id,
+    this.lastName,
+    this.name,
+  });
 
   copyWith(User user) {
     return User(

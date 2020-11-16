@@ -7,9 +7,13 @@ class EnterpriseDescription extends StatelessWidget {
   final int review;
   final String address;
 
-  EnterpriseDescription(
-      {Key key, this.name, this.description, this.review, this.address})
-      : super(key: key);
+  EnterpriseDescription({
+    Key key,
+    this.name,
+    this.description,
+    this.review,
+    this.address,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +37,7 @@ class EnterpriseDescription extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(bottom: 10),
             child: Text(
-              description ??
-                  "Salão e barbearia especializada em cabelos Afro. Quer dar um trato no visual? Invista no seu estilo black e liberte a fera em você!",
+              description,
               style: TextStyle(
                 fontSize: 14,
               ),

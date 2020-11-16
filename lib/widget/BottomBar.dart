@@ -9,25 +9,34 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 1;
 
-  void logOut(int index) {
-    AuthService _auth = AuthService();
-    _auth.logout();
+  void doActionBottom(int index) {
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, '/home');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, '/explorer');
+        break;
+      default:
+        AuthService _auth = AuthService();
+        _auth.logout();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      onTap: logOut,
+      onTap: doActionBottom,
       items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search),
           title: Text(
             'Explorar',
           ),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.favorite_border),
-          title: Text('Favoritos'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.calendar_today),

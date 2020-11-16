@@ -9,8 +9,11 @@ class PerformSchedulingSection extends StatefulWidget {
   final FormContext formContext;
   final Function setFormContext;
 
-  PerformSchedulingSection({Key key, this.formContext, this.setFormContext})
-      : super(key: key);
+  PerformSchedulingSection({
+    Key key,
+    this.formContext,
+    this.setFormContext,
+  }) : super(key: key);
 
   @override
   _PerformSchedulingSectionState createState() =>

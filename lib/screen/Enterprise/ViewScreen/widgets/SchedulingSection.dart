@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
+import 'package:omorfias/screen/Enterprise/AvaibleHours/AvaibleHours.dart';
 
 class SchedulingSection extends StatelessWidget {
   final bool isOpenToScheduling;
 
-  SchedulingSection({Key key, this.isOpenToScheduling = true})
-      : super(key: key);
+  SchedulingSection({
+    Key key,
+    this.isOpenToScheduling = true,
+  }) : super(key: key);
 
-  Widget isOpenWidget() {
+  Widget isOpenWidget(BuildContext context) {
     return Container(
       child: Row(
         children: [
@@ -35,7 +38,10 @@ class SchedulingSection extends StatelessWidget {
                   ],
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AvaibleHours()));
+              },
             ),
           ),
         ],
@@ -43,7 +49,7 @@ class SchedulingSection extends StatelessWidget {
     );
   }
 
-  Widget isCloseWidget() {
+  Widget isCloseWidget(BuildContext context) {
     return Container(
       child: Row(
         children: [
@@ -70,7 +76,10 @@ class SchedulingSection extends StatelessWidget {
                   ],
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AvaibleHours()));
+              },
             ),
           ),
         ],
@@ -84,7 +93,8 @@ class SchedulingSection extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         horizontal: DesignSystem.spacingMargin,
       ),
-      child: isOpenToScheduling ? isOpenWidget() : isCloseWidget(),
+      child:
+          isOpenToScheduling ? isOpenWidget(context) : isCloseWidget(context),
     );
   }
 }
