@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/widget/Logo.dart';
-import 'package:omorfias/widget/RegisterForm.dart';
+import 'package:omorfias/screen/Register/widgets/RegisterForm.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override

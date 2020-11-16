@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omorfias/widget/CircleButton.dart';
 
 class PopButton extends StatefulWidget {
   @override
@@ -12,18 +13,10 @@ class _PopButtonState extends State<PopButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(5),
-      child: MaterialButton(
-        color: Colors.white,
-        shape: CircleBorder(),
-        onPressed: popScreen,
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Icon(
-            Icons.arrow_back,
-          ),
-        ),
+    return CircleButton(
+      onPressed: popScreen,
+      iconChild: Icon(
+        Icons.arrow_back,
       ),
     );
   }

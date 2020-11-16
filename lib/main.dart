@@ -3,15 +3,17 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:omorfias/config/SecureStorage.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
 import 'package:omorfias/redux/appState.dart';
-import 'package:omorfias/screen/ExplorerScreen.dart';
-import 'package:omorfias/screen/HomeScreen.dart';
-import 'package:omorfias/screen/LoginScreen.dart';
-import 'package:omorfias/screen/RegisterScreen.dart';
+import 'package:omorfias/screen/Enterprise/ViewScreen/EnterpriseScreen.dart';
+import 'package:omorfias/screen/Explorer/ExplorerScreen.dart';
+import 'package:omorfias/screen/Home/HomeScreen.dart';
+import 'package:omorfias/screen/Login/LoginScreen.dart';
+import 'package:omorfias/screen/Register/RegisterScreen.dart';
 import 'package:redux/redux.dart';
 import 'package:omorfias/redux/reducer.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  runApp(MyApp());
+  initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -64,6 +66,7 @@ class _OmorfiasAppState extends State<OmorfiasApp> {
               '/login': (BuildContext context) => LoginScreen(),
               '/home': (BuildContext context) => HomeScreen(),
               '/explorer': (BuildContext context) => ExplorerScreen(),
+              '/enterprise/view': (BuildContext context) => EnterpriseScreen(),
               '/': (BuildContext context) =>
                   snapshot.data == true ? HomeScreen() : LoginScreen()
             },
