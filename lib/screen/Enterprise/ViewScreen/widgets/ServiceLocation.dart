@@ -67,6 +67,8 @@ class _ServiceLocationState extends State<ServiceLocation> {
                 Padding(
                   padding: EdgeInsets.only(right: 10),
                   child: SquaredButton(
+                    paddingX: 40,
+                    paddingY: 12,
                     onPress: () {
                       setServiceLocation(ServiceLocationEnum.home);
                     },
@@ -86,6 +88,8 @@ class _ServiceLocationState extends State<ServiceLocation> {
                   ),
                 ),
                 SquaredButton(
+                  paddingX: 40,
+                  paddingY: 12,
                   onPress: () {
                     setServiceLocation(ServiceLocationEnum.store);
                   },

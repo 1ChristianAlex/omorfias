@@ -44,7 +44,7 @@ class _NextYouSectionState extends State<NextYouSection> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.55,
+                    height: 350,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: snapshot.data.length,

@@ -6,6 +6,8 @@ class SquaredButton extends StatelessWidget {
   final Text textWidget;
   final Function onPress;
   final bool fullWidth;
+  final double paddingX;
+  final double paddingY;
 
   const SquaredButton({
     Key key,
@@ -13,6 +15,8 @@ class SquaredButton extends StatelessWidget {
     this.textWidget,
     this.onPress,
     this.fullWidth = false,
+    this.paddingX,
+    this.paddingY,
   }) : super(key: key);
 
   @override
@@ -28,7 +32,8 @@ class SquaredButton extends StatelessWidget {
         ),
         onPressed: onPress,
         color: !primary ? Colors.black : Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 47, vertical: 16),
+        padding: EdgeInsets.symmetric(
+            horizontal: paddingX ?? 47, vertical: paddingY ?? 16),
         child: textWidget,
       ),
     );

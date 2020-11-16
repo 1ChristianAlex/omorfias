@@ -37,7 +37,7 @@ class RecommendedSection extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: DesignSystem.spacingMargin),
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.45,
+            height: 280,
             child: FutureBuilder(
                 future: getRecommended(),
                 builder: (
@@ -50,6 +50,7 @@ class RecommendedSection extends StatelessWidget {
                       childAspectRatio: (widthGrid / heighGrid),
                       scrollDirection: Axis.horizontal,
                       crossAxisCount: 3,
+                      shrinkWrap: true,
                       children: List.generate(
                         snapshot.data.length,
                         (index) => MiniProduct(

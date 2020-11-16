@@ -47,7 +47,7 @@ class BestReviews extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                       horizontal: DesignSystem.spacingMargin),
                   child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.5,
+                    height: 390,
                     child: GridView.count(
                       mainAxisSpacing: 40,
                       childAspectRatio: (widthGrid / heighGrid),

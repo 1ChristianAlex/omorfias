@@ -15,7 +15,7 @@ class AuthService implements IAuthService {
   }
 
   Future<User> login(Login login) async {
-    final respose = await _adapter.postMethod('/auth', login.toJsonData());
+    final respose = await _adapter.postMethod('/Auth', login.toJsonData());
 
     LoginResponse loginResponse = LoginResponse.fromJson(respose);
     _secureStorage.setValue('token', loginResponse.token);

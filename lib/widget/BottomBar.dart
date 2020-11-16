@@ -12,10 +12,10 @@ class _BottomBarState extends State<BottomBar> {
   void doActionBottom(int index) {
     switch (index) {
       case 0:
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushNamed(context, '/home');
         break;
       case 1:
-        Navigator.pushReplacementNamed(context, '/explorer');
+        Navigator.pushNamed(context, '/explorer');
         break;
       default:
         AuthService _auth = AuthService();
