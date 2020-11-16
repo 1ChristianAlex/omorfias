@@ -3,7 +3,7 @@ import 'package:omorfias/widget/CircleButton.dart';
 
 class ViewImage extends StatefulWidget {
   final String imageSource;
-  final String enterpriseId;
+  final int enterpriseId;
   final bool isFavorite;
 
   const ViewImage(
@@ -40,8 +40,8 @@ class _ViewImageState extends State<ViewImage> {
         children: [
           Container(
             child: Image(
-              image: AssetImage(
-                widget.imageSource ?? 'assets/images/experience-3.jpeg',
+              image: NetworkImage(
+                widget.imageSource,
               ),
               fit: BoxFit.cover,
               height: MediaQuery.of(context).size.height * 0.35,

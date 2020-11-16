@@ -1,5 +1,5 @@
 class ScreenArguments {
-  final Map<String, String> argumentsList;
+  final Map<String, dynamic> argumentsList;
 
   ScreenArguments(
     this.argumentsList,

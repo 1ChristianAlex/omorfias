@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
+import 'package:omorfias/model/serviceProduct.dart';
 import 'package:omorfias/utils/Currency.dart';
 
 class MiniProduct extends StatelessWidget {
+  final ServiceProduct product;
+
+  MiniProduct({Key key, this.product}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +22,7 @@ class MiniProduct extends StatelessWidget {
                 Radius.circular(DesignSystem.squaredRounded),
               ),
               child: Image(
-                image: AssetImage('assets/images/recommended-1.jpeg'),
+                image: NetworkImage(product.url),
                 fit: BoxFit.cover,
               ),
             ),
@@ -33,12 +38,12 @@ class MiniProduct extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.only(bottom: 5),
                     child: Text(
-                      'Corte e Barba',
+                      product.title,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
-                    child: Text(Currency.doubleToCurrency(25.66)),
+                    child: Text(Currency.doubleToCurrency(product.price)),
                   ),
                 ],
               ),

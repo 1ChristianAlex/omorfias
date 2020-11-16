@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:omorfias/model/enterprise.dart';
 import 'package:omorfias/screen/Enterprise/ViewScreen/FormContext.dart';
 import 'package:omorfias/screen/Enterprise/ViewScreen/widgets/ConfirmSchedulingButtons.dart';
 import 'package:omorfias/screen/Enterprise/ViewScreen/widgets/EnterpriseDescription.dart';
@@ -9,6 +10,7 @@ import 'package:omorfias/screen/Enterprise/ViewScreen/widgets/SelectHourSection.
 import 'package:omorfias/screen/Enterprise/ViewScreen/widgets/ServiceList.dart';
 import 'package:omorfias/screen/Enterprise/ViewScreen/widgets/ServiceLocation.dart';
 import 'package:omorfias/screen/Enterprise/ViewScreen/widgets/ViewImage.dart';
+import 'package:omorfias/service/Products/EnterpriseService.dart';
 import 'package:omorfias/utils/ScreenArguments.dart';
 import 'package:omorfias/widget/ScaffoldWithBottomNav.dart';
 
@@ -20,7 +22,7 @@ class EnterpriseScreen extends StatefulWidget {
 class _EnterpriseScreenState extends State<EnterpriseScreen> {
   FormContext formContext;
 
-  Map<String, String> getArguments() {
+  Map<String, dynamic> getArguments() {
     ScreenArguments args = ModalRoute.of(context).settings.arguments;
 
     return args.argumentsList;
@@ -42,40 +44,62 @@ class _EnterpriseScreenState extends State<EnterpriseScreen> {
     Navigator.pop(context);
   }
 
+  Future<Enterprise> getEnterprise() async {
+    var enterpriseService = EnterpriseService();
+    int id = getArguments()['enterpriseId'];
+    var itemEnterprise = await enterpriseService.getEnterprise(id);
+
+    return itemEnterprise;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBottomNav(
-      child: Column(
-        children: [
-          ViewImage(),
-          EnterpriseDescription(),
-          SchedulingSection(),
-          ServiceLocation(
-            formContext: formContext,
-            setFormContext: setFormContext,
-          ),
-          ServiceList(
-            formContext: formContext,
-            setFormContext: setFormContext,
-          ),
-          PerformSchedulingSection(
-            formContext: formContext,
-            setFormContext: setFormContext,
-          ),
-          SelectHourSection(
-            formContext: formContext,
-            setFormContext: setFormContext,
-          ),
-          PaymentSection(
-            formContext: formContext,
-            setFormContext: setFormContext,
-          ),
-          ConfirmSchedulingButtons(
-            formContext: formContext,
-            setFormContext: setFormContext,
-          )
-        ],
-      ),
+      child: FutureBuilder(
+          future: getEnterprise(),
+          builder: (BuildContext context, AsyncSnapshot<Enterprise> snapshot) {
+            if (snapshot.hasData) {
+              var enterprise = snapshot.data;
+              return Column(
+                children: [
+                  ViewImage(
+                    enterpriseId: enterprise.id,
+                    imageSource: enterprise.urlImage,
+                  ),
+                  EnterpriseDescription(
+                    name: enterprise.name,
+                    review: enterprise.evaluation,
+                  ),
+                  SchedulingSection(),
+                  ServiceLocation(
+                    formContext: formContext,
+                    setFormContext: setFormContext,
+                  ),
+                  ServiceList(
+                    formContext: formContext,
+                    setFormContext: setFormContext,
+                  ),
+                  PerformSchedulingSection(
+                    formContext: formContext,
+                    setFormContext: setFormContext,
+                  ),
+                  SelectHourSection(
+                    formContext: formContext,
+                    setFormContext: setFormContext,
+                  ),
+                  PaymentSection(
+                    formContext: formContext,
+                    setFormContext: setFormContext,
+                  ),
+                  ConfirmSchedulingButtons(
+                    formContext: formContext,
+                    setFormContext: setFormContext,
+                  )
+                ],
+              );
+            }
+            return Container();
+          }),
     );
   }
 }

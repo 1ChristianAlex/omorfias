@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
+import 'package:omorfias/model/enterprise.dart';
 
 class CardStoreEnterprise extends StatefulWidget {
+  final Enterprise enterpriseItem;
+
+  CardStoreEnterprise({Key key, @required this.enterpriseItem})
+      : super(key: key);
+
   @override
   _CardStoreEnterpriseState createState() => _CardStoreEnterpriseState();
 }
@@ -17,6 +23,9 @@ class _CardStoreEnterpriseState extends State<CardStoreEnterprise> {
 
   @override
   Widget build(BuildContext context) {
+    var enterpriseItem = widget.enterpriseItem;
+    var avarage =
+        List.generate(enterpriseItem.averageValue, (index) => '\$').join('');
     return Container(
       child: Column(
         children: [
@@ -31,7 +40,7 @@ class _CardStoreEnterpriseState extends State<CardStoreEnterprise> {
                 children: [
                   Container(
                     child: Image(
-                      image: AssetImage('assets/images/experience-3.jpeg'),
+                      image: NetworkImage(enterpriseItem.urlImage),
                       fit: BoxFit.cover,
                       height: MediaQuery.of(context).size.height * 0.35,
                     ),
@@ -90,7 +99,7 @@ class _CardStoreEnterpriseState extends State<CardStoreEnterprise> {
                   size: 20,
                   color: Colors.blue,
                 ),
-                Text('5.0 (217)')
+                Text(enterpriseItem.evaluation.toStringAsFixed(2))
               ],
             ),
           ),
@@ -98,7 +107,7 @@ class _CardStoreEnterpriseState extends State<CardStoreEnterprise> {
             width: MediaQuery.of(context).size.width * 0.9,
             margin: EdgeInsets.only(bottom: 8),
             child: Text(
-              'Salão e Barbearia - Black Panter',
+              enterpriseItem.name,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -109,7 +118,7 @@ class _CardStoreEnterpriseState extends State<CardStoreEnterprise> {
             width: MediaQuery.of(context).size.width * 0.9,
             margin: EdgeInsets.only(bottom: 8),
             child: Text(
-              'Salão e Barbearia',
+              enterpriseItem.category,
               style: TextStyle(
                 fontSize: 14,
               ),
@@ -119,7 +128,7 @@ class _CardStoreEnterpriseState extends State<CardStoreEnterprise> {
             width: MediaQuery.of(context).size.width * 0.9,
             margin: EdgeInsets.only(bottom: 8),
             child: Text(
-              'Média de valor: \$\$',
+              'Média de valor: $avarage',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,

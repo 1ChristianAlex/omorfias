@@ -4,7 +4,7 @@ import 'package:omorfias/enum/DesignSystem.dart';
 class EnterpriseDescription extends StatelessWidget {
   final String name;
   final String description;
-  final String review;
+  final int review;
   final String address;
 
   EnterpriseDescription(
@@ -23,7 +23,7 @@ class EnterpriseDescription extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(bottom: 10),
             child: Text(
-              (name ?? "Salão e Barbearia - Black Panter").toUpperCase(),
+              (name).toUpperCase(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -47,7 +47,7 @@ class EnterpriseDescription extends StatelessWidget {
                   Icons.star,
                   color: Colors.blue,
                 ),
-                Text(review ?? '5.0 (132)'),
+                Text(review.toStringAsFixed(2)),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(

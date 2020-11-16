@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:omorfias/enum/DesignSystem.dart';
+import 'package:omorfias/model/enterprise.dart';
 import 'package:omorfias/utils/ScreenArguments.dart';
 
 class MiniProductReview extends StatelessWidget {
+  final Enterprise enterprise;
+
+  MiniProductReview({Key key, this.enterprise}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 15),
       child: GestureDetector(
         onTap: () {
-          Map<String, String> arguments = Map();
-          arguments['enterpriseId'] = 'Id';
+          Map<String, int> arguments = Map();
+          arguments['enterpriseId'] = enterprise.id;
           Navigator.pushNamed(
             context,
             '/enterprise/view',
@@ -27,7 +32,7 @@ class MiniProductReview extends StatelessWidget {
                   Radius.circular(DesignSystem.squaredRounded),
                 ),
                 child: Image(
-                  image: AssetImage('assets/images/recommended-2.jpeg'),
+                  image: NetworkImage(enterprise.urlImage),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -43,12 +48,12 @@ class MiniProductReview extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.only(bottom: 5),
                       child: Text(
-                        'Black Panter'.toUpperCase(),
+                        enterprise.name.toUpperCase(),
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
-                      child: Text('Salão e Barbearia'),
+                      child: Text(enterprise.description),
                     ),
                     Container(
                       child: Row(
@@ -58,7 +63,7 @@ class MiniProductReview extends StatelessWidget {
                             size: 20,
                             color: Colors.blue,
                           ),
-                          Text('5.0 (217)')
+                          Text(enterprise.evaluation.toStringAsFixed(2))
                         ],
                       ),
                     ),
