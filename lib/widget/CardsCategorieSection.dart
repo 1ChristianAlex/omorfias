@@ -6,19 +6,19 @@ class CardsStoreSection extends StatelessWidget {
     {
       'title': 'Estúdios de Tatuagem',
       'description':
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+          'Encontre o seu estilo de tatuagem, com o tatuador que mais te agrade.',
       'image': 'assets/images/tatoo-store.jpg'
     },
     {
-      'title': 'Estúdios de Tatuagem',
+      'title': 'Estúdios de beleza',
       'description':
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+          'Dê um momento para cuidar da beleza! Encontre a pessoa mais qualificada para sua beleza.',
       'image': 'assets/images/hair-store.jpg'
     },
     {
-      'title': 'Estúdios de Barbearia',
+      'title': 'Barbearia',
       'description':
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+          'Cabelo na regua ou não, conheça nossos profissionais e escolha o especialista para você!',
       'image': 'assets/images/barber-store.jpg'
     }
   ];

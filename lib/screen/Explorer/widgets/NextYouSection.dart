@@ -44,7 +44,7 @@ class _NextYouSectionState extends State<NextYouSection> {
                     ),
                   ),
                   SizedBox(
-                    height: 350,
+                    height: 400,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: snapshot.data.length,

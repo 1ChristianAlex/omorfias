@@ -9,13 +9,26 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 1;
 
+  bool isCurrentRoute(String targetRoute) {
+    var routerName = ModalRoute.of(context).settings.name;
+
+    if (routerName != targetRoute) {
+      return true;
+    }
+    return false;
+  }
+
   void doActionBottom(int index) {
     switch (index) {
       case 0:
-        Navigator.pushNamed(context, '/home');
+        if (isCurrentRoute('/home')) {
+          Navigator.pushNamed(context, '/home');
+        }
         break;
       case 1:
-        Navigator.pushNamed(context, '/explorer');
+        if (isCurrentRoute('/explorer')) {
+          Navigator.pushNamed(context, '/explorer');
+        }
         break;
       default:
         AuthService _auth = AuthService();

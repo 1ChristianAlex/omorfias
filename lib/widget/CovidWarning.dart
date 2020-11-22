@@ -24,7 +24,7 @@ class CovidWarning extends StatelessWidget {
                 Expanded(
                   child: Container(
                     child: Text(
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.',
+                      'Use máscara quando não for possível manter o distanciamento físico.',
                     ),
                   ),
                 )
@@ -45,7 +45,7 @@ class CovidWarning extends StatelessWidget {
                 Expanded(
                   child: Container(
                     child: Text(
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.',
+                      'O ideal é permanecer em casa durante o período mais crítico da infecção. Por isso, se você não precisa sair para trabalhar, fique dentro de casa. É fundamental relembrar que durante a quarentena ninguém deve sair à rua sem razão essencial.Fique em casa se você se sentir indisposto.',
                     ),
                   ),
                 )
@@ -66,7 +66,7 @@ class CovidWarning extends StatelessWidget {
                 Expanded(
                   child: Container(
                     child: Text(
-                      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.',
+                      'Ligue com antecedência para o plano ou órgão de saúde e peça direcionamento à unidade mais adequada. Isso protege você e evita a propagação de vírus e outras infecções.',
                     ),
                   ),
                 )

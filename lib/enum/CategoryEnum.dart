@@ -8,14 +8,14 @@ class CategoryEnum {
 String getCaregoryName(int categoryId) {
   switch (categoryId) {
     case 1:
-      return 'Estudio de tatuagem';
+      return 'Estúdio de tatuagem';
     case 2:
-      return 'Estudio de beleza';
+      return 'Estúdio de beleza';
     case 3:
       return 'Barberia';
     case 4:
       return 'Clinica de belza';
     default:
-      return 'Estudio';
+      return 'Estúdio';
   }
 }

@@ -14,27 +14,27 @@ class NewExperiencesSection extends StatelessWidget {
         'textColor': textColor,
         'descriptionColor': descriptionColor,
         'hasShadow': hasShadow,
-        'title': 'Estúdios de Tatuagem',
+        'title': 'Barbearia',
         'description':
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+            'Cabelo na regua ou não, conheça nossos profissionais e escolha o especialista para você!',
         'image': 'assets/images/experience-3.jpeg',
       },
       {
         'textColor': textColor,
         'descriptionColor': descriptionColor,
         'hasShadow': hasShadow,
-        'title': 'Estúdios de Tatuagem',
+        'title': 'Clinica de estética',
         'description':
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+            'Não so sua pele, mas você por inteiro merece ser bem cuidada (o). Encontre aqui a clinica de estetica perfeita para você. ',
         'image': 'assets/images/experience-2.jpeg',
       },
       {
         'textColor': textColor,
         'descriptionColor': descriptionColor,
         'hasShadow': hasShadow,
-        'title': 'Barbearia',
+        'title': 'Estúdio de tatuagem',
         'description':
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
+            'Encontre o seu estilo de tatuagem, com o tatuador que mais te agrade.',
         'image': 'assets/images/experience-1.jpeg',
       }
     ];
@@ -68,7 +68,7 @@ class NewExperiencesSection extends StatelessWidget {
               horizontal: DesignSystem.spacingMargin,
             ),
             child: Text(
-              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+              'Descubra novos estilos, observe, experimente e aplique! Não se limite a padrões de beleza, nos te ajudamos a encontrar o seu estilo.',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 14,
